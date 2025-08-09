@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  # Admin Panel Frontend
+  bioentry-admin:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: bioentry-admin-panel
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+      - VITE_API_BASE_URL=http://localhost:8000
+    depends_on:
+      - bioentry-api
+    networks:
+      - bioentry-network
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.admin.rule=Host(`admin.bioentry.local`)"
+      - "traefik.http.services.admin.loadbalancer.server.port=80"
+
+  # FastAPI Backend (referencing existing service)
+  bioentry-api:
+    build: 
+      context: ../api/API-FR-deepface
+      dockerfile: Dockerfile
+    container_name: bioentry-api-server
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-your-secret-key-change-this}
+      - DATABASE_URL=${DATABASE_URL:-sqlite:///./bioentry.db}
+      - FACE_MODEL=SFace
+      - ANTI_SPOOFING=True
+    volumes:
+      - ../api/API-FR-deepface/uploads:/app/uploads
+      - ../api/API-FR-deepface/data:/app/data
+      - bioentry-db:/app/database
+    networks:
+      - bioentry-network
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`api.bioentry.local`)"
+      - "traefik.http.services.api.loadbalancer.server.port=8000"
+
+networks:
+  bioentry-network:
+    driver: bridge
+    name: bioentry
+
+volumes:
+  bioentry-db:
+    name: bioentry-database

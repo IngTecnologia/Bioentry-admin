@@ -6,6 +6,7 @@ import { ProtectedRoute, PublicOnlyRoute } from '@/components/auth/ProtectedRout
 import { Layout } from '@/components/layout/Layout'
 import { Login } from '@/pages/auth/Login'
 import { Dashboard } from '@/pages/dashboard/Dashboard'
+import { UsersList } from '@/pages/users/UsersList'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,8 +45,8 @@ function App() {
               <Route index element={<Navigate to="/dashboard" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
               
-              {/* Placeholder para futuras rutas */}
-              <Route path="users" element={<div>Usuarios (Por implementar)</div>} />
+              {/* Rutas de usuarios */}
+              <Route path="users" element={<UsersList />} />
               <Route path="attendance" element={<div>Asistencia (Por implementar)</div>} />
               <Route path="companies" element={<div>Empresas (Por implementar)</div>} />
               <Route path="terminals" element={<div>Terminales (Por implementar)</div>} />
