@@ -6,14 +6,17 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Generate package-lock.json and install all dependencies
+# Install dependencies
 RUN npm install
 
-# Copy source code
-COPY . .
-
-# Remove unnecessary files
-RUN rm -rf node_modules .git .env* docker* README.md
+# Copy only necessary files for build
+COPY src ./src
+COPY index.html ./
+COPY vite.config.ts ./
+COPY tsconfig*.json ./
+COPY tailwind.config.js ./
+COPY postcss.config.js ./
+COPY public ./public
 
 # Build the application
 RUN npm run build
