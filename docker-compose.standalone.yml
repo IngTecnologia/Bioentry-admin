@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # Admin Panel Frontend (Standalone)
+  bioentry-admin:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: bioentry-admin-panel
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+      - VITE_API_BASE_URL=${VITE_API_BASE_URL:-http://localhost:8000}
+    networks:
+      - bioentry-network
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.admin.rule=Host(`admin.bioentry.local`)"
+      - "traefik.http.services.admin.loadbalancer.server.port=80"
+
+networks:
+  bioentry-network:
+    driver: bridge
+    name: bioentry
