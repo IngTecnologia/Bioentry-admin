@@ -59,17 +59,17 @@ export function Login() {
             </div>
             <h1 className="text-4xl font-bold mb-4">BioEntry</h1>
             <p className="text-xl text-primary-100">
-              Panel de Administraci�n
+              Panel de Administración
             </p>
           </div>
           <div className="space-y-4 text-primary-100">
             <div className="flex items-center justify-center space-x-3">
               <div className="w-2 h-2 bg-primary-300 rounded-full"></div>
-              <span>Control de Asistencia Biom�trica</span>
+              <span>Control de Asistencia Biométrica</span>
             </div>
             <div className="flex items-center justify-center space-x-3">
               <div className="w-2 h-2 bg-primary-300 rounded-full"></div>
-              <span>Gesti�n Multi-empresa</span>
+              <span>Gestión Multi-empresa</span>
             </div>
             <div className="flex items-center justify-center space-x-3">
               <div className="w-2 h-2 bg-primary-300 rounded-full"></div>
@@ -92,16 +92,16 @@ export function Login() {
               <span className="text-2xl font-bold text-white">B</span>
             </div>
             <h1 className="text-2xl font-bold text-gray-900">BioEntry</h1>
-            <p className="text-gray-600">Panel de Administraci�n</p>
+            <p className="text-gray-600">Panel de Administración</p>
           </div>
 
           <div className="bg-white rounded-xl shadow-medium p-8">
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Iniciar Sesi�n
+                Iniciar Sesión
               </h2>
               <p className="text-gray-600">
-                Accede al panel de administraci�n
+                Accede al panel de administración
               </p>
             </div>
 
@@ -130,7 +130,7 @@ export function Login() {
 
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                  Contrase�a
+                  Contraseña
                 </label>
                 <div className="relative">
                   <input
@@ -165,7 +165,7 @@ export function Login() {
                     className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
                     disabled={isLoading}
                   />
-                  <span className="ml-2 text-sm text-gray-700">Recordar sesi�n</span>
+                  <span className="ml-2 text-sm text-gray-700">Recordar sesión</span>
                 </label>
 
                 <button
@@ -173,7 +173,7 @@ export function Login() {
                   className="text-sm text-primary-600 hover:text-primary-500"
                   onClick={() => setError('Contacta al administrador del sistema')}
                 >
-                  �Olvidaste tu contrase�a?
+                  ¿Olvidaste tu contraseña?
                 </button>
               </div>
 
@@ -185,16 +185,16 @@ export function Login() {
                 {isLoading ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2 inline-block"></div>
-                    Iniciando sesi�n...
+                    Iniciando sesión...
                   </>
                 ) : (
-                  'Iniciar Sesi�n'
+                  'Iniciar Sesión'
                 )}
               </button>
             </form>
 
             <div className="mt-8 text-center text-sm text-gray-500">
-              <p>� 2024 INEMEC - Todos los derechos reservados</p>
+              <p>© 2024 INEMEC - Todos los derechos reservados</p>
             </div>
           </div>
         </div>

@@ -15,7 +15,7 @@ export interface LoginCredentials {
   password: string;
 }
 
-// Respuesta de autenticación
+// Respuesta de autenticaciÃ³n
 export interface AuthResponse {
   user: AuthUser;
   token: string;
@@ -33,7 +33,7 @@ export interface JwtPayload {
   iat: number;
 }
 
-// Context de autenticación
+// Context de autenticaciÃ³n
 export interface AuthContextType {
   user: AuthUser | null;
   isAuthenticated: boolean;

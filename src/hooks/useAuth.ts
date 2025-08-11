@@ -2,10 +2,10 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 import { AuthUser, AuthContextType, LoginCredentials } from '@/types/auth';
 import { authService } from '@/services/authService';
 
-// Crear el contexto de autenticación
+// Crear el contexto de autenticaciï¿½n
 const AuthContext = createContext<AuthContextType | null>(null);
 
-// Hook para usar el contexto de autenticación
+// Hook para usar el contexto de autenticaciï¿½n
 export function useAuth(): AuthContextType {
   const context = useContext(AuthContext);
   if (!context) {
@@ -14,12 +14,12 @@ export function useAuth(): AuthContextType {
   return context;
 }
 
-// Hook personalizado para manejar autenticación
+// Hook personalizado para manejar autenticaciÃ³n
 export function useAuthProvider() {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Cargar usuario al inicializar la aplicación
+  // Cargar usuario al inicializar la aplicaciÃ³n
   useEffect(() => {
     const initializeAuth = async () => {
       try {
@@ -29,7 +29,7 @@ export function useAuthProvider() {
         if (currentUser && isAuthenticated) {
           setUser(currentUser);
           
-          // Verificar si el token está próximo a expirar y renovarlo
+          // Verificar si el token estÃ¡ prÃ³ximo a expirar y renovarlo
           if (authService.isTokenExpiringSoon()) {
             try {
               await authService.refreshToken();
@@ -39,12 +39,12 @@ export function useAuthProvider() {
             }
           }
         } else if (currentUser) {
-          // Usuario existe pero token expirado, limpiar sesión
+          // Usuario existe pero token expirado, limpiar sesiÃ³n
           authService.logout();
           setUser(null);
         }
       } catch (error) {
-        console.error('Error inicializando autenticación:', error);
+        console.error('Error inicializando autenticaciÃ³n:', error);
         setUser(null);
       } finally {
         setIsLoading(false);
@@ -54,7 +54,7 @@ export function useAuthProvider() {
     initializeAuth();
   }, []);
 
-  // Configurar renovación automática de token
+  // Configurar renovaciÃ³n automÃ¡tica de token
   useEffect(() => {
     if (!user) return;
 
@@ -63,7 +63,7 @@ export function useAuthProvider() {
         try {
           await authService.refreshToken();
         } catch (error) {
-          console.error('Error en renovación automática de token:', error);
+          console.error('Error en renovaciÃ³n automÃ¡tica de token:', error);
           logout();
         }
       }
@@ -129,13 +129,13 @@ export function useAuthUser(): AuthUser | null {
   return user;
 }
 
-// Hook para verificar si el usuario está autenticado
+// Hook para verificar si el usuario estï¿½ autenticado
 export function useIsAuthenticated(): boolean {
   const { isAuthenticated } = useAuth();
   return isAuthenticated;
 }
 
-// Hook para verificar permisos específicos
+// Hook para verificar permisos especÃ­ficos
 export function usePermissions() {
   const { hasPermission } = useAuth();
   return { hasPermission };

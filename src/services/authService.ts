@@ -7,19 +7,16 @@ class AuthService {
   private readonly USER_KEY = 'admin_user';
 
   /**
-   * Iniciar sesi�n de administrador
+   * Iniciar sesión de administrador
    */
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
     try {
       const response = await apiClient.post<AuthResponse>('/admin/auth/login', credentials);
       const authData = response.data;
       
-      console.log('[DEBUG] Auth response:', authData);
-      
       if (authData.token) {
         this.setTokens(authData.token, authData.refreshToken);
         this.setUser(authData.user);
-        console.log('[DEBUG] Tokens and user saved successfully');
       }
       
       return authData;
@@ -30,7 +27,7 @@ class AuthService {
   }
 
   /**
-   * Cerrar sesi�n
+   * Cerrar sesión
    */
   async logout(): Promise<void> {
     try {
@@ -97,7 +94,7 @@ class AuthService {
   }
 
   /**
-   * Verificar si el usuario est� autenticado
+   * Verificar si el usuario está autenticado
    */
   isAuthenticated(): boolean {
     const token = this.getToken();
@@ -112,7 +109,7 @@ class AuthService {
   }
 
   /**
-   * Verificar si el usuario tiene un permiso espec�fico
+   * Verificar si el usuario tiene un permiso específico
    */
   hasPermission(permission: string): boolean {
     const user = this.getCurrentUser();
@@ -120,7 +117,7 @@ class AuthService {
   }
 
   /**
-   * Verificar si el usuario tiene un rol espec�fico
+   * Verificar si el usuario tiene un rol específico
    */
   hasRole(role: string): boolean {
     const user = this.getCurrentUser();
@@ -128,7 +125,7 @@ class AuthService {
   }
 
   /**
-   * Decodificar token JWT (solo para verificar expiraci�n, NO para validaci�n de seguridad)
+   * Decodificar token JWT (solo para verificar expiración, NO para validación de seguridad)
    */
   private decodeToken(token: string): JwtPayload {
     try {
@@ -142,7 +139,7 @@ class AuthService {
       );
       return JSON.parse(jsonPayload);
     } catch (error) {
-      throw new Error('Token inv�lido');
+      throw new Error('Token inválido');
     }
   }
 
@@ -164,7 +161,7 @@ class AuthService {
   }
 
   /**
-   * Limpiar toda la sesi�n
+   * Limpiar toda la sesión
    */
   private clearSession(): void {
     localStorage.removeItem(this.TOKEN_KEY);
@@ -173,7 +170,7 @@ class AuthService {
   }
 
   /**
-   * Verificar si el token est� pr�ximo a expirar (5 minutos antes)
+   * Verificar si el token está próximo a expirar (5 minutos antes)
    */
   isTokenExpiringSoon(): boolean {
     const token = this.getToken();
@@ -192,6 +189,6 @@ class AuthService {
   }
 }
 
-// Instancia singleton del servicio de autenticaci�n
+// Instancia singleton del servicio de autenticación
 export const authService = new AuthService();
 export default authService;
