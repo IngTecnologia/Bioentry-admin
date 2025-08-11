@@ -23,7 +23,7 @@ services:
   # FastAPI Backend (referencing existing service)
   bioentry-api:
     build: 
-      context: C:\Users\jesus\OneDrive\Documents\INEMEC\registros\BioEntryApi\API-FR-deepface
+      context: ../api/API-FR-deepface
       dockerfile: Dockerfile
     container_name: bioentry-api-server
     ports:
@@ -35,8 +35,8 @@ services:
       - FACE_MODEL=SFace
       - ANTI_SPOOFING=True
     volumes:
-      - C:\Users\jesus\OneDrive\Documents\INEMEC\registros\BioEntryApi\API-FR-deepface\uploads:/app/uploads
-      - C:\Users\jesus\OneDrive\Documents\INEMEC\registros\BioEntryApi\API-FR-deepface\data:/app/data
+      - ../api/API-FR-deepface/uploads:/app/uploads
+      - ../api/API-FR-deepface/data:/app/data
       - bioentry-db:/app/database
     networks:
       - bioentry-network

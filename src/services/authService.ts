@@ -1,5 +1,5 @@
-import { apiClient } from './api';
-import { AuthResponse, LoginCredentials, AuthUser, JwtPayload } from '@/types/auth';
+import { apiClient } from './apiClient';
+import { AuthResponse, LoginCredentials, AuthUser, JwtPayload } from '../types/auth';
 
 class AuthService {
   private readonly TOKEN_KEY = 'admin_token';
@@ -7,7 +7,7 @@ class AuthService {
   private readonly USER_KEY = 'admin_user';
 
   /**
-   * Iniciar sesión de administrador
+   * Iniciar sesiï¿½n de administrador
    */
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
     try {
@@ -26,7 +26,7 @@ class AuthService {
   }
 
   /**
-   * Cerrar sesión
+   * Cerrar sesiï¿½n
    */
   async logout(): Promise<void> {
     try {
@@ -92,7 +92,7 @@ class AuthService {
   }
 
   /**
-   * Verificar si el usuario está autenticado
+   * Verificar si el usuario estï¿½ autenticado
    */
   isAuthenticated(): boolean {
     const token = this.getToken();
@@ -107,7 +107,7 @@ class AuthService {
   }
 
   /**
-   * Verificar si el usuario tiene un permiso específico
+   * Verificar si el usuario tiene un permiso especï¿½fico
    */
   hasPermission(permission: string): boolean {
     const user = this.getCurrentUser();
@@ -115,7 +115,7 @@ class AuthService {
   }
 
   /**
-   * Verificar si el usuario tiene un rol específico
+   * Verificar si el usuario tiene un rol especï¿½fico
    */
   hasRole(role: string): boolean {
     const user = this.getCurrentUser();
@@ -123,7 +123,7 @@ class AuthService {
   }
 
   /**
-   * Decodificar token JWT (solo para verificar expiración, NO para validación de seguridad)
+   * Decodificar token JWT (solo para verificar expiraciï¿½n, NO para validaciï¿½n de seguridad)
    */
   private decodeToken(token: string): JwtPayload {
     try {
@@ -137,7 +137,7 @@ class AuthService {
       );
       return JSON.parse(jsonPayload);
     } catch (error) {
-      throw new Error('Token inválido');
+      throw new Error('Token invï¿½lido');
     }
   }
 
@@ -159,7 +159,7 @@ class AuthService {
   }
 
   /**
-   * Limpiar toda la sesión
+   * Limpiar toda la sesiï¿½n
    */
   private clearSession(): void {
     localStorage.removeItem(this.TOKEN_KEY);
@@ -168,7 +168,7 @@ class AuthService {
   }
 
   /**
-   * Verificar si el token está próximo a expirar (5 minutos antes)
+   * Verificar si el token estï¿½ prï¿½ximo a expirar (5 minutos antes)
    */
   isTokenExpiringSoon(): boolean {
     const token = this.getToken();
@@ -187,6 +187,6 @@ class AuthService {
   }
 }
 
-// Instancia singleton del servicio de autenticación
+// Instancia singleton del servicio de autenticaciï¿½n
 export const authService = new AuthService();
 export default authService;

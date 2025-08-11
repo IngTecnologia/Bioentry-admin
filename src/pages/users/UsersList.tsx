@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { userService, User, UserFilters } from '@/services/userService';
+import { userService, User, UserFilters } from '../../services/userService';
 
 export function UsersList() {
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ export function UsersList() {
     },
   });
 
-  // Manejar búsqueda
+  // Manejar bï¿½squeda
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setFilters(prev => ({
@@ -72,21 +72,21 @@ export function UsersList() {
     }));
   };
 
-  // Manejar paginación
+  // Manejar paginaciï¿½n
   const handlePageChange = (page: number) => {
     setFilters(prev => ({ ...prev, page }));
   };
 
   // Manejar toggle de estado
   const handleToggleStatus = (user: User) => {
-    if (window.confirm(`¿${user.activo ? 'Desactivar' : 'Activar'} a ${user.nombre}?`)) {
+    if (window.confirm(`ï¿½${user.activo ? 'Desactivar' : 'Activar'} a ${user.nombre}?`)) {
       toggleStatusMutation.mutate({ cedula: user.cedula, activo: !user.activo });
     }
   };
 
-  // Manejar eliminación
+  // Manejar eliminaciï¿½n
   const handleDeleteUser = (user: User) => {
-    if (window.confirm(`¿Eliminar permanentemente a ${user.nombre}? Esta acción no se puede deshacer.`)) {
+    if (window.confirm(`ï¿½Eliminar permanentemente a ${user.nombre}? Esta acciï¿½n no se puede deshacer.`)) {
       deleteUserMutation.mutate(user.cedula);
     }
   };
@@ -118,7 +118,7 @@ export function UsersList() {
             Error al cargar usuarios
           </h3>
           <p className="mt-2 text-sm text-error-700">
-            No se pudieron cargar los usuarios. Verifica la conexión con la API.
+            No se pudieron cargar los usuarios. Verifica la conexiï¿½n con la API.
           </p>
         </div>
       </div>
@@ -131,15 +131,15 @@ export function UsersList() {
       <div className="md:flex md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
           <h2 className="text-2xl font-bold leading-7 text-gray-900">
-            Gestión de Usuarios
+            Gestiï¿½n de Usuarios
           </h2>
           <p className="mt-1 text-sm text-gray-500">
-            Administra usuarios del sistema de asistencia biométrica
+            Administra usuarios del sistema de asistencia biomï¿½trica
           </p>
         </div>
         <div className="mt-4 flex space-x-3 md:ml-4 md:mt-0">
           <Link to="/users/import" className="btn-secondary">
-            =ä Importar
+            =ï¿½ Importar
           </Link>
           <Link to="/users/create" className="btn-primary">
             =e Nuevo Usuario
@@ -147,11 +147,11 @@ export function UsersList() {
         </div>
       </div>
 
-      {/* Filtros y búsqueda */}
+      {/* Filtros y bï¿½squeda */}
       <div className="card">
         <div className="card-body">
           <form onSubmit={handleSearch} className="space-y-4 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-4">
-            {/* Búsqueda */}
+            {/* Bï¿½squeda */}
             <div className="lg:col-span-4">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -160,7 +160,7 @@ export function UsersList() {
                 <input
                   type="text"
                   className="input pl-10"
-                  placeholder="Buscar por cédula o nombre..."
+                  placeholder="Buscar por cï¿½dula o nombre..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -192,7 +192,7 @@ export function UsersList() {
               >
                 <option value="">Todos los perfiles</option>
                 <option value="fijo">Fijo</option>
-                <option value="movil">Móvil</option>
+                <option value="movil">Mï¿½vil</option>
                 <option value="libre">Libre</option>
               </select>
             </div>
@@ -210,7 +210,7 @@ export function UsersList() {
               </select>
             </div>
 
-            {/* Botón de búsqueda */}
+            {/* Botï¿½n de bï¿½squeda */}
             <div className="lg:col-span-1">
               <button type="submit" className="btn-primary w-full">
                 Buscar
@@ -241,10 +241,10 @@ export function UsersList() {
                 value={filters.limit}
                 onChange={(e) => handleFilterChange('limit', parseInt(e.target.value))}
               >
-                <option value={10}>10 por página</option>
-                <option value={20}>20 por página</option>
-                <option value={50}>50 por página</option>
-                <option value={100}>100 por página</option>
+                <option value={10}>10 por pï¿½gina</option>
+                <option value={20}>20 por pï¿½gina</option>
+                <option value={50}>50 por pï¿½gina</option>
+                <option value={100}>100 por pï¿½gina</option>
               </select>
             </div>
           </div>
@@ -268,7 +268,7 @@ export function UsersList() {
                     Estado
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Última Asistencia
+                    ï¿½ltima Asistencia
                   </th>
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Acciones
@@ -319,7 +319,7 @@ export function UsersList() {
                         <p className="text-sm">
                           {filters.search || filters.empresa || filters.perfil_ubicacion || filters.activo !== undefined
                             ? 'No se encontraron usuarios con los filtros seleccionados.'
-                            : 'Aún no hay usuarios registrados en el sistema.'
+                            : 'Aï¿½n no hay usuarios registrados en el sistema.'
                           }
                         </p>
                         <div className="mt-4">
@@ -407,7 +407,7 @@ export function UsersList() {
                             title="Eliminar"
                             disabled={deleteUserMutation.isLoading}
                           >
-                            =Ñ
+                            =ï¿½
                           </button>
                         </div>
                       </td>
@@ -419,7 +419,7 @@ export function UsersList() {
           </div>
         </div>
 
-        {/* Paginación */}
+        {/* Paginaciï¿½n */}
         {data && data.totalPages > 1 && (
           <div className="card-footer">
             <div className="flex items-center justify-between">
@@ -435,7 +435,7 @@ export function UsersList() {
                   Anterior
                 </button>
                 
-                {/* Números de página */}
+                {/* Nï¿½meros de pï¿½gina */}
                 {Array.from({ length: Math.min(5, data.totalPages) }, (_, i) => {
                   const pageNum = Math.max(1, data.page - 2) + i;
                   if (pageNum > data.totalPages) return null;

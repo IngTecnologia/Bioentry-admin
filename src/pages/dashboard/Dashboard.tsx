@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { dashboardService, RegistroAsistencia, TerminalStatus } from '@/services/dashboardService';
+import { dashboardService, RegistroAsistencia, TerminalStatus } from '../../services/dashboardService';
 
 export function Dashboard() {
   // Query para métricas principales
