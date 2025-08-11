@@ -12,13 +12,17 @@ class AuthService {
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
     try {
       const response = await apiClient.post<AuthResponse>('/admin/auth/login', credentials);
+      const authData = response.data;
       
-      if (response.token) {
-        this.setTokens(response.token, response.refreshToken);
-        this.setUser(response.user);
+      console.log('[DEBUG] Auth response:', authData);
+      
+      if (authData.token) {
+        this.setTokens(authData.token, authData.refreshToken);
+        this.setUser(authData.user);
+        console.log('[DEBUG] Tokens and user saved successfully');
       }
       
-      return response;
+      return authData;
     } catch (error) {
       console.error('Error en login:', error);
       throw error;
@@ -55,8 +59,9 @@ class AuthService {
         refreshToken
       });
 
-      this.setTokens(response.token, response.refreshToken);
-      return response.token;
+      const tokenData = response.data;
+      this.setTokens(tokenData.token, tokenData.refreshToken);
+      return tokenData.token;
     } catch (error) {
       console.error('Error renovando token:', error);
       this.clearSession();

@@ -16,7 +16,7 @@ export const apiClient = axios.create({
 // Interceptor para agregar token JWT
 apiClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('bioentry_token');
+    const token = localStorage.getItem('admin_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -33,8 +33,9 @@ apiClient.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       // Token expirado o inválido
-      localStorage.removeItem('bioentry_token');
-      localStorage.removeItem('bioentry_user');
+      localStorage.removeItem('admin_token');
+      localStorage.removeItem('admin_refresh_token');
+      localStorage.removeItem('admin_user');
       window.location.href = '/login';
     }
     return Promise.reject(error);
