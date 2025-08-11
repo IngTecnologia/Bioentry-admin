@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 // Formulario de login simple sin dependencias externas por ahora
 export function Login() {
@@ -32,15 +32,15 @@ export function Login() {
     } catch (error: any) {
       console.error('Error en login:', error);
       
-      // Manejar errores específicos del servidor
+      // Manejar errores especï¿½ficos del servidor
       if (error.response?.status === 401) {
-        setError('Credenciales incorrectas. Verifica tu email y contraseña.');
+        setError('Credenciales incorrectas. Verifica tu email y contraseï¿½a.');
       } else if (error.response?.status === 403) {
         setError('Tu cuenta no tiene permisos de administrador.');
       } else if (error.response?.status >= 500) {
         setError('Error del servidor. Por favor, intenta nuevamente.');
       } else {
-        setError('Error de conexión. Verifica tu conexión a internet.');
+        setError('Error de conexiï¿½n. Verifica tu conexiï¿½n a internet.');
       }
     } finally {
       setIsLoading(false);
@@ -59,17 +59,17 @@ export function Login() {
             </div>
             <h1 className="text-4xl font-bold mb-4">BioEntry</h1>
             <p className="text-xl text-primary-100">
-              Panel de Administración
+              Panel de Administraciï¿½n
             </p>
           </div>
           <div className="space-y-4 text-primary-100">
             <div className="flex items-center justify-center space-x-3">
               <div className="w-2 h-2 bg-primary-300 rounded-full"></div>
-              <span>Control de Asistencia Biométrica</span>
+              <span>Control de Asistencia Biomï¿½trica</span>
             </div>
             <div className="flex items-center justify-center space-x-3">
               <div className="w-2 h-2 bg-primary-300 rounded-full"></div>
-              <span>Gestión Multi-empresa</span>
+              <span>Gestiï¿½n Multi-empresa</span>
             </div>
             <div className="flex items-center justify-center space-x-3">
               <div className="w-2 h-2 bg-primary-300 rounded-full"></div>
@@ -86,22 +86,22 @@ export function Login() {
       {/* Panel derecho - Formulario */}
       <div className="flex-1 flex items-center justify-center px-8 py-12 bg-gray-50">
         <div className="max-w-md w-full">
-          {/* Logo para móvil */}
+          {/* Logo para mï¿½vil */}
           <div className="lg:hidden text-center mb-8">
             <div className="w-16 h-16 mx-auto mb-4 bg-primary-600 rounded-full flex items-center justify-center">
               <span className="text-2xl font-bold text-white">B</span>
             </div>
             <h1 className="text-2xl font-bold text-gray-900">BioEntry</h1>
-            <p className="text-gray-600">Panel de Administración</p>
+            <p className="text-gray-600">Panel de Administraciï¿½n</p>
           </div>
 
           <div className="bg-white rounded-xl shadow-medium p-8">
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Iniciar Sesión
+                Iniciar Sesiï¿½n
               </h2>
               <p className="text-gray-600">
-                Accede al panel de administración
+                Accede al panel de administraciï¿½n
               </p>
             </div>
 
@@ -130,7 +130,7 @@ export function Login() {
 
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                  Contraseña
+                  Contraseï¿½a
                 </label>
                 <div className="relative">
                   <input
@@ -139,7 +139,7 @@ export function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="input pr-10"
-                    placeholder=""""""""""
+                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                     disabled={isLoading}
                     required
                   />
@@ -165,7 +165,7 @@ export function Login() {
                     className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
                     disabled={isLoading}
                   />
-                  <span className="ml-2 text-sm text-gray-700">Recordar sesión</span>
+                  <span className="ml-2 text-sm text-gray-700">Recordar sesiï¿½n</span>
                 </label>
 
                 <button
@@ -173,7 +173,7 @@ export function Login() {
                   className="text-sm text-primary-600 hover:text-primary-500"
                   onClick={() => setError('Contacta al administrador del sistema')}
                 >
-                  ¿Olvidaste tu contraseña?
+                  ï¿½Olvidaste tu contraseï¿½a?
                 </button>
               </div>
 
@@ -185,16 +185,16 @@ export function Login() {
                 {isLoading ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2 inline-block"></div>
-                    Iniciando sesión...
+                    Iniciando sesiï¿½n...
                   </>
                 ) : (
-                  'Iniciar Sesión'
+                  'Iniciar Sesiï¿½n'
                 )}
               </button>
             </form>
 
             <div className="mt-8 text-center text-sm text-gray-500">
-              <p>© 2024 INEMEC - Todos los derechos reservados</p>
+              <p>ï¿½ 2024 INEMEC - Todos los derechos reservados</p>
             </div>
           </div>
         </div>
