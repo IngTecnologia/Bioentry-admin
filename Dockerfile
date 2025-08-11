@@ -9,14 +9,11 @@ COPY package*.json ./
 # Generate package-lock.json and install all dependencies
 RUN npm install
 
-# Copy source code (excluding node_modules and other build artifacts)
-COPY src ./src
-COPY public ./public
-COPY index.html ./
-COPY vite.config.ts ./
-COPY tsconfig*.json ./
-COPY tailwind.config.js ./
-COPY postcss.config.js ./
+# Copy source code
+COPY . .
+
+# Remove unnecessary files
+RUN rm -rf node_modules .git .env* docker* README.md
 
 # Build the application
 RUN npm run build
